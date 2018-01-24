@@ -10,8 +10,16 @@
   color: #796465 !important;
 }
 
-.categories {
+.categories, .one-cat {
   border: 1px solid #796465;
   padding: 8px;
   border-radius: 5px;
+}
+
+.cat-name {
+  text-transform: uppercase;
+}
+
+.cat-products {
+  padding-bottom: 30px;
 }

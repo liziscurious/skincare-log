@@ -45,13 +45,26 @@
     </div>
 
     <!-- Show Categories -->
-    <div class="categories" ng-if="ctrl.showCategories === true">
-      <h2>Categories</h2>
-      <div ng-repeat='category in ctrl.categories'>
-        <p ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </p>
+    <div class="cat-products row">
+      <div class="categories col" ng-if="ctrl.showCategories === true">
+        <h2>Explore Skincare Products</h2>
+        <div ng-repeat='category in ctrl.categories'>
+          <h4 ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </h4>
+        </div>
+        <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
       </div>
-      <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
+
+      <!-- Show One Category -->
+      <div class="col one-cat" ng-if="ctrl.showOneCategory === true">
+        <!-- <p>Trying to put a product category here</p> -->
+        <p class="cat-name"> {{ ctrl.oneCategory.category.name }} </p>
+        <div ng-repeat="oneProduct in ctrl.oneCategory.products">
+          <p>{{ oneProduct.brand }} {{ oneProduct.name }}</p>
+        </div>
+      </div>
+
     </div>
+
 
     <!-- Log In Form for JWT Testing -->
     <div ng-if="ctrl.showLogInForm === true">
@@ -74,11 +87,11 @@
   </div>
 
   <!-- Footer -->
-    <nav class="navbar navbar-light" style="background-color: #cb8589">
-      <div class="container">
-        <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
-      </div>
-    </nav>
-  </div>
+  <nav class="navbar navbar-light" style="background-color: #cb8589">
+    <div class="container">
+      <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
+    </div>
+  </nav>
+</div>
 </body>
 </html>

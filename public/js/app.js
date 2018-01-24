@@ -7,6 +7,7 @@ app.controller('MainController', ['$http', function($http){
   this.user = {};
   this.showLogInForm = false;
   this.showCategories = false;
+  this.showOneCategory = false;
   this.categories = [];
 
   this.login = function(userPass) {
@@ -67,6 +68,9 @@ app.controller('MainController', ['$http', function($http){
     }).then (response => {
       this.oneCategory = response.data;
       console.log(this.oneCategory);
+      console.log(this.oneCategory.category.name);
+      console.log(this.oneCategory.products);
+      this.showOneCategory = true;
     }).catch(err => console.log(err));
   }
 
