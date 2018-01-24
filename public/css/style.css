@@ -9,3 +9,9 @@
 .footer-link a {
   color: #796465 !important;
 }
+
+.categories {
+  border: 1px solid #796465;
+  padding: 8px;
+  border-radius: 5px;
+}

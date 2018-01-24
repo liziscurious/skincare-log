@@ -18,55 +18,55 @@
 </head>
 
 <body ng-controller='MainController as ctrl'>
+  <div class="container">
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AA96A7">
+      <a class="navbar-brand" href="#">SkincareLog</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" ng-click="ctrl.showCategories = true">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <!-- Nav -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AA96A7">
-    <a class="navbar-brand" href="#">SkincareLog</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" ng-click="ctrl.showCategories = true">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Landing intro information -->
-  <div class="landing jumbotron">
-    <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
-    <div>
-      <a class="btn btn-outline-secondary" href="#">Sign Up</a>
-      <a class="btn btn-outline-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
-      <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
-    </div>
-  </div>
-
-  <!-- Show Categories -->
-  <div ng-if="ctrl.showCategories === true">
-    <h2>Categories</h2>
-    <div ng-repeat='category in ctrl.categories'>
-      <p> {{ category.name }} </p>
+    <!-- Landing intro information -->
+    <div class="landing jumbotron">
+      <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
+      <div>
+        <a class="btn btn-outline-secondary" href="#">Sign Up</a>
+        <a class="btn btn-outline-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
+        <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+      </div>
     </div>
 
-  </div>
+    <!-- Show Categories -->
+    <div class="categories" ng-if="ctrl.showCategories === true">
+      <h2>Categories</h2>
+      <div ng-repeat='category in ctrl.categories'>
+        <p> {{ category.name }} </p>
+      </div>
+      <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
+    </div>
 
-  <!-- Log In Form for JWT Testing -->
-  <div ng-if="ctrl.showLogInForm === true">
-    <form ng-submit="ctrl.login(userPass)">
-      <input type="text" ng-model="userPass.username" placeholder="username"/>
-      <input type="password" ng-model="userPass.password" placeholder="password"/>
-      <input type="submit"/>
-    </form>
+    <!-- Log In Form for JWT Testing -->
+    <div ng-if="ctrl.showLogInForm === true">
+      <form ng-submit="ctrl.login(userPass)">
+        <input type="text" ng-model="userPass.username" placeholder="username"/>
+        <input type="password" ng-model="userPass.password" placeholder="password"/>
+        <input type="submit"/>
+      </form>
 
-    <p>Welcome {{ ctrl.user.username }} </p>
+      <p>Welcome {{ ctrl.user.username }} </p>
 
-    <!-- <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
-    <div> {{ ctrl.error }} </div> -->
+      <!-- <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
+      <div> {{ ctrl.error }} </div> -->
 
-    <!-- <div ng-repeat="user in ctrl.users">
+      <!-- <div ng-repeat="user in ctrl.users">
       <h1> {{ user.username }} </h1>
     </div> -->
 
@@ -74,11 +74,11 @@
   </div>
 
   <!-- Footer -->
-  <nav class="navbar navbar-light" style="background-color: #cb8589">
-    <div class="container">
-      <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
-    </div>
-  </nav>
-
+    <nav class="navbar navbar-light" style="background-color: #cb8589">
+      <div class="container">
+        <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
+      </div>
+    </nav>
+  </div>
 </body>
 </html>
