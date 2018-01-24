@@ -48,7 +48,7 @@
     <div class="categories" ng-if="ctrl.showCategories === true">
       <h2>Categories</h2>
       <div ng-repeat='category in ctrl.categories'>
-        <p> {{ category.name }} </p>
+        <p ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </p>
       </div>
       <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
     </div>

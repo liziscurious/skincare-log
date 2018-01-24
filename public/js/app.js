@@ -57,4 +57,17 @@ app.controller('MainController', ['$http', function($http){
 
   this.getCategories();
 
+  this.getOneCategory = (category) => {
+    console.log('oneCategory clicked');
+    console.log(category);
+    this.oneCategoryId = category.id
+    $http({
+      method: 'GET',
+      url: this.url + 'categories/' + this.oneCategoryId
+    }).then (response => {
+      this.oneCategory = response.data;
+      console.log(this.oneCategory);
+    }).catch(err => console.log(err));
+  }
+
 }]);
