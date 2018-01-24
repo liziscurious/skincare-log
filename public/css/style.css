@@ -1,4 +1,11 @@
-/* Testing to ensure CSS is linked
 * {
-  color: red;
-} */
+  font-family: 'Quattrocento', serif;
+}
+
+.btn {
+  margin: 10px !important;
+}
+
+.footer-link a {
+  color: #796465 !important;
+}

@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html ng-app='SkincareLog'>
-  <head>
-    <meta charset="utf-8">
-    <title>Skincare Log</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skincare Log</title>
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Quattrocento" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 
-  <body ng-controller='MainController as ctrl'>
-    <h1>Skincare Log</h1>
-    <h3>{{ ctrl.message }}</h3>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body ng-controller='MainController as ctrl'>
+  <!-- Basic setup testing -->
+  <!-- <h1>Skincare Log</h1> -->
+  <!-- <h3>{{ ctrl.message }}</h3> -->
+
+  <!-- Nav -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AA96A7">
+    <a class="navbar-brand" href="#">SkincareLog</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Landing intro information -->
+  <div class="landing jumbotron">
+    <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
+    <div>
+      <a class="btn btn-outline-secondary" href="#">Sign Up</a>
+      <a class="btn btn-outline-secondary" href="#">Log In</a>
+      <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+    </div>
+  </div>
+
+  <br/>
+
+  <!-- Footer -->
+  <!-- <footer class="navbar navbar-expand-lg navbar-light" style="background-color: #cb8589">
+    <a class="footer-link" href="https://github.com/liziscurious">Made by Liz Glanz</a>
+  </footer> -->
+
+  <nav class="navbar navbar-light" style="background-color: #cb8589">
+    <div class="container">
+      <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
+    </div>
+  </nav>
+
+</body>
 </html>
