@@ -9,18 +9,43 @@ app.controller('MainController', ['$http', function($http){
   this.showCategories = false;
   this.showOneCategory = false;
   this.categories = [];
+  this.showRegisterForm = false;
+  this.loggedIn = false;
 
-  this.login = function(userPass) {
+  this.createUser = (userRegister) => {
+    console.log(userRegister);
+    $http({
+      method: 'POST',
+      url: this.url + 'users',
+      data: { user: { username: userRegister.username, password: userRegister.password }}
+    }).then(response => {
+      if (response.data.status === 401){
+        this.error = "Username or Password Incorrect";
+      } else {
+        this.user = response.data.user;
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        this.loggedIn = true;
+        console.log('It works!');
+      };
+    });
+  };
+
+  this.login = (userPass) => {
     console.log(userPass);
     $http({
       method: 'POST',
-      url: this.url + '/users/login',
-      data: { user: { username: userPass.username, password: userPass.password }},
-    }).then(function(response) {
+      url: this.url + 'users/login',
+      data: { user: { username: userPass.username, password: userPass.password }}
+    }).then(response => {
       console.log(response);
-      this.user = response.data.user;
-      localStorage.setItem('token', JSON.stringify(response.data.token));
-    }.bind(this));
+      if (response.data.status === 401) {
+        this.error = "Unauthorized";
+      } else {
+        this.user = response.data.user;
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        this.loggedIn = true;
+      };
+    });
   };
 
   this.getUsers = function() {

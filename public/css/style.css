@@ -23,3 +23,7 @@
 .cat-products {
   padding-bottom: 30px;
 }
+
+.cat-name:hover, .product-name:hover {
+  cursor: pointer !important;
+}
