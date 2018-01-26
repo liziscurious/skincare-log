@@ -11,6 +11,10 @@ app.controller('MainController', ['$http', function($http){
   this.categories = [];
   this.showRegisterForm = false;
   this.loggedIn = false;
+  this.landing = true;
+  this.addLog = true;
+  this.tempLog = [];
+  this.tempProduct = null;
 
   this.createUser = (userRegister) => {
     console.log(userRegister);
@@ -44,6 +48,7 @@ app.controller('MainController', ['$http', function($http){
         this.user = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
+        this.showLogInForm = false;
       };
     });
   };
@@ -77,26 +82,27 @@ app.controller('MainController', ['$http', function($http){
       url: this.url + 'categories'
     }).then(response => {
       this.categories = response.data;
-      console.log(this.categories);
     }).catch(err => console.log(err));
   };
 
   this.getCategories();
 
   this.getOneCategory = (category) => {
-    console.log('oneCategory clicked');
-    console.log(category);
     this.oneCategoryId = category.id
     $http({
       method: 'GET',
       url: this.url + 'categories/' + this.oneCategoryId
     }).then (response => {
       this.oneCategory = response.data;
-      console.log(this.oneCategory);
-      console.log(this.oneCategory.category.name);
-      console.log(this.oneCategory.products);
       this.showOneCategory = true;
     }).catch(err => console.log(err));
   }
+
+  this.addToTempLog = (productId) => {
+    this.tempProduct = productId;
+    console.log(this.tempProduct);
+    this.tempLog.push(this.tempProduct);
+    console.log(this.tempLog);
+  };
 
 }]);
