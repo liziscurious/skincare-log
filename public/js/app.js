@@ -13,8 +13,7 @@ app.controller('MainController', ['$http', function($http){
   this.loggedIn = false;
   this.landing = true;
   this.addLog = false;
-  this.tempLog = [];
-  this.tempProduct = null;
+  this.user = {};
 
   this.createUser = (userRegister) => {
     console.log(userRegister);
@@ -27,6 +26,7 @@ app.controller('MainController', ['$http', function($http){
         this.error = "Username or Password Incorrect";
       } else {
         this.user = response.data.user;
+        console.log('Logged in user is ', this.user.username, '. User ID is ', this.user.id);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
         this.showRegisterForm = false;
@@ -36,17 +36,16 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.login = (userPass) => {
-    console.log(userPass);
     $http({
       method: 'POST',
       url: this.url + 'users/login',
       data: { user: { username: userPass.username, password: userPass.password }}
     }).then(response => {
-      console.log(response);
       if (response.data.status === 401) {
         this.error = "Unauthorized";
       } else {
         this.user = response.data.user;
+        console.log('Logged in user is ', this.user.username, '. User ID is ', this.user.id);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
         this.showLogInForm = false;
@@ -74,6 +73,7 @@ app.controller('MainController', ['$http', function($http){
   this.logout = function () {
     localStorage.clear('token');
     location.reload();
+    this.user = {};
   };
 
   // Show All Categories Route
@@ -99,11 +99,19 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   }
 
-  this.addToTempLog = (productId) => {
-    this.tempProduct = productId;
-    console.log(this.tempProduct);
-    this.tempLog.push(this.tempProduct);
-    console.log(this.tempLog);
+  this.addNewLog = () => {
+    console.log(this.user.id);
+    $http({
+      method: 'POST',
+      url: this.url + 'users/' + this.user.id + '/logs',
+      data: {
+        name: this.newLog.name,
+        user_id: this.user.id
+      }
+    }).then(response => {
+      this.currentLog = response.data;
+      console.log(this.currentLog);
+    });
   };
 
 }]);
