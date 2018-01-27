@@ -46,7 +46,7 @@
       <div class="categories col" ng-if="ctrl.showCategories === true">
         <h2>Add to your skincare log</h2>
         <div ng-repeat='category in ctrl.categories'>
-          <h4 ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </h4>
+          <p class="cat-name" ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </p>
         </div>
         <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
       </div>
@@ -67,27 +67,7 @@
 
     </div>
 
-
-    <!-- Log In Form for JWT Testing -->
-    <div ng-if="ctrl.showLogInForm === true">
-      <p>Log In</p>
-      <form ng-submit="ctrl.login(userPass)">
-        <input type="text" ng-model="userPass.username" placeholder="username"/>
-        <input type="password" ng-model="userPass.password" placeholder="password"/>
-        <input type="submit"/>
-      </form>
-    </div>
-    <br/>
-
-    <!-- Register Form -->
-    <div ng-if="ctrl.showRegisterForm === true">
-      <p>Sign Up</p>
-      <form ng-submit="ctrl.createUser(userRegister)">
-        <input type="text" ng-model="userRegister.username" placeholder="username"/>
-        <input type="password" ng-model="userRegister.password" placeholder="password"/>
-        <input type="submit"/>
-      </form>
-    </div>
+    <div ng-include="'partials/auth-login.html'"></div>
 
     <!-- Log In Greeting -->
     <div ng-if="ctrl.loggedIn === true">
@@ -100,7 +80,7 @@
     <!-- Log Your Skincare Routine -->
     <div class="add-log" ng-if="ctrl.addLog === true">
       <h3>New entry in your skincare log</h3>
-      {{ ctrl.tempLog }}
+      <!-- {{ ctrl.tempLog }} -->
     </div>
 
   </div>

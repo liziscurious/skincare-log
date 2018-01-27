@@ -1,0 +1,21 @@
+<!-- Log In Form for JWT Testing -->
+<div ng-if="ctrl.showLogInForm === true">
+  <p>Log In</p>
+  <form ng-submit="ctrl.login(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username"/>
+    <input type="password" ng-model="userPass.password" placeholder="password"/>
+    <input type="submit"/>
+  </form>
+  <p class="text text-secondary" ng-click="ctrl.showLogInForm = false">Close</p>
+</div>
+<br/>
+
+<!-- Register Form -->
+<div ng-if="ctrl.showRegisterForm === true">
+  <p>Sign Up</p>
+  <form ng-submit="ctrl.createUser(userRegister)">
+    <input type="text" ng-model="userRegister.username" placeholder="username"/>
+    <input type="password" ng-model="userRegister.password" placeholder="password"/>
+    <input type="submit"/>
+  </form>
+</div>

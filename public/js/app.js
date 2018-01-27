@@ -12,7 +12,7 @@ app.controller('MainController', ['$http', function($http){
   this.showRegisterForm = false;
   this.loggedIn = false;
   this.landing = true;
-  this.addLog = true;
+  this.addLog = false;
   this.tempLog = [];
   this.tempProduct = null;
 
@@ -29,6 +29,7 @@ app.controller('MainController', ['$http', function($http){
         this.user = response.data.user;
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
+        this.showRegisterForm = false;
         console.log('It works!');
       };
     });
