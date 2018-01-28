@@ -6,8 +6,14 @@
   <div ng-repeat="userLog in ctrl.userLogs">
     <p ng-click="ctrl.getOneLog(userLog)">
       {{ userLog.name }}
-      {{ userLog.created_at }}
+      <!-- {{ userLog.created_at }} -->
     </p>
   </div>
 
+  <p>{{ oneLog.name }}</p>
+  <div ng-repeat="logEntry in ctrl.oneLog.products">
+    {{ logEntry.brand }}
+    {{ logEntry.name }}
+  </div>
+  
 </div>

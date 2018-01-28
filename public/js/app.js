@@ -103,7 +103,6 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.getLogs = () => {
-    console.log('this button works!');
     $http({
       method: 'GET',
       url: this.url + 'users/' + this.user.id + '/logs'
@@ -115,7 +114,6 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.getOneLog = (log) => {
-    console.log('getting a log soon....');
     $http({
       method: 'GET',
       url: this.url + 'users/' + this.user.id + '/logs/' + log.id
