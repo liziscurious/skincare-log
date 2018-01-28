@@ -14,6 +14,8 @@ app.controller('MainController', ['$http', function($http){
   this.landing = true;
   this.addLog = false;
   this.user = {};
+  this.getOneProductId = null;
+  this.currentLogEntries = {};
 
   this.createUser = (userRegister) => {
     console.log(userRegister);
@@ -97,7 +99,13 @@ app.controller('MainController', ['$http', function($http){
       this.oneCategory = response.data;
       this.showOneCategory = true;
     }).catch(err => console.log(err));
-  }
+  };
+
+  // Test route to get product id
+  // this.getOneProduct = (product) => {
+  //   this.getOneProductId = product.id;
+  //   console.log(this.getOneProductId);
+  // };
 
   this.addNewLog = () => {
     console.log(this.user.id);
@@ -111,7 +119,26 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       this.currentLog = response.data;
       console.log(this.currentLog);
-    });
+    }).catch(err => console.log(err));
+  };
+
+  this.addNewEntry = (prod) => {
+    console.log('Adding to this log ', this.currentLog);
+    this.newEntry = prod;
+    console.log(this.newEntry);
+    $http({
+      method: 'POST',
+      url: this.url + 'users/' + this.user.id + '/logs/' + this.currentLog.id + '/entries',
+      data: {
+        log_id: this.currentLog.id,
+        product_id: this.newEntry
+      }
+    }).then(response => {
+      // this.newProductEntry = response.data;
+      // this.currentLogEntries.push(this.newProductEntry);
+      // console.log(this.currentLogEntries);
+      // posting properly, not pushing into front end yet
+    }).catch(err => console.log(err));
   };
 
 }]);

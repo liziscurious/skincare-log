@@ -41,32 +41,6 @@
       </div>
     </div>
 
-    <!-- Show Categories -->
-    <div class="cat-products row">
-      <div class="categories col" ng-if="ctrl.showCategories === true">
-        <h2>Add to your skincare log</h2>
-        <div ng-repeat='category in ctrl.categories'>
-          <p class="cat-name" ng-click="ctrl.getOneCategory(category)"> {{ category.name }} </p>
-        </div>
-        <p class="text text-secondary" ng-click="ctrl.showCategories = false">Close</p>
-      </div>
-
-      <!-- Show One Category -->
-      <div class="col one-cat" ng-if="ctrl.showOneCategory === true">
-        <!-- <p>Trying to put a product category here</p> -->
-        <p class="cat-name"> {{ ctrl.oneCategory.category.name }} </p>
-        <div ng-repeat="oneProduct in ctrl.oneCategory.products">
-          <p class="product-name">
-            {{ oneProduct.brand }} {{ oneProduct.name }}
-            <form>
-              <input type="submit" class="btn btn-outline-secondary" ng-click="ctrl.addToTempLog(oneProduct.id)">
-            </form>
-          </p>
-        </div>
-      </div>
-
-    </div>
-
     <div ng-include="'partials/auth-login.html'"></div>
 
     <!-- Log In Greeting -->
@@ -74,16 +48,23 @@
       <p>Welcome {{ ctrl.user.username }}
         <a href="#" ng-click="ctrl.logout()">Log Out</a>
       </p>
-      <a class="btn btn-outline-secondary" type="button" ng-click="ctrl.addLog = true">Add to your skincare log</a>
+      <a class="btn btn-outline-secondary" type="button" ng-click="ctrl.addLog = true">Start a new entry</a>
     </div>
 
     <!-- Log Your Skincare Routine -->
     <div class="add-log" ng-if="ctrl.addLog === true">
-      <h3>New entry in your skincare log</h3>
-      <form ng-sumbit="ctrl.addNewLog()">
-        <input type="text" placeholder="Name your log entry" ng-model="ctrl.newLog.name"/>
-        <input class="btn btn-outline-primary" type="submit" ng-click="ctrl.addNewLog()"/>
+      <form ng-submit="ctrl.addNewLog()">
+        <label for="new-log-name">Log Title</label>
+        <input id="new-log-name" type="text" placeholder="Date & Time of Day" ng-model="ctrl.newLog.name"/>
+        <label for="new-log-btn">Start a new log entry</label>
+        <input id="new-log-btn" class="btn btn-outline-primary" type="submit"/>
       </form>
+    </div>
+
+    <!-- Add to a your current log -->
+    <div>
+      <h2>{{ ctrl.currentLog.name }}</h2>
+      <div ng-include="'partials/add-entries.html'"></div>
     </div>
 
   </div>

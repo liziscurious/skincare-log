@@ -1,0 +1,23 @@
+<!-- Add entries to current log -->
+  <div class="cat-products row">
+
+    <div class="categories col" ng-if="ctrl.showCategories === true">
+      <h3>Add products to your log entry</h3>
+      <div ng-repeat="category in ctrl.categories">
+        <p class="cat-name" ng-click="ctrl.getOneCategory(category)">
+          {{ category.name }} </p>
+        </div>
+    </div>
+
+    <div class="col one-cat" ng-if="ctrl.showOneCategory === true">
+      <p class="cat-name"> {{ ctrl.oneCategory.category.name }} </p>
+      <div ng-repeat="oneProduct in ctrl.oneCategory.products">
+        <form>
+          <p class="product-name">
+            {{ oneProduct.brand }} {{ oneProduct.name }}
+            <button type="submit" class="btn btn-outline-secondary" ng-click="ctrl.addNewEntry(oneProduct.id)">Add</button>
+          </p>
+        </form>
+    </div>
+
+  </div>
