@@ -22,6 +22,7 @@ app.controller('MainController', ['$http', function($http){
   this.showUserLogs = false;
   this.showAddProductForm = false;
   this.showAddedProduct = false;
+  this.showEditProductForm = false;
   this.allProducts = {};
 
   this.createUser = (userRegister) => {
@@ -134,8 +135,27 @@ app.controller('MainController', ['$http', function($http){
       this.addedProduct = response.data;
       console.log(this.addedProduct);
       this.showAddedProduct = true;
+      this.formData = {};
       this.getCategories();
     }).catch(err => console.log(err));
+  };
+
+  this.editOneProduct = (formData) => {
+    console.log('Edit one product button works');
+    console.log(this.prodToEdit);
+    this.editedProduct = formData;
+    console.log(this.editedProduct);
+    $http({
+      method: 'PUT',
+      url: this.url + 'products/' + this.prodToEdit.id,
+      data: {
+        brand: this.editedProduct.brand,
+        name: this.editedProduct.name
+      }
+    }).then(response => {
+      console.log(response.data);
+      getAllProducts();
+    })
   };
 
   this.getLogs = () => {

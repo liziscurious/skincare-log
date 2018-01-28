@@ -1,44 +1,106 @@
-<div class="row" ng-if="ctrl.showAddProductForm === true">
-  <form class="col-sm prod-form justify-content-md-center">
-    <h4>Add a product to the database</h4>
-    <div class="form-group">
-      <label for="cat-dropdown">Category</label>
-      <select class="form-control" id="cat-dropdown" ng-model="formData.category_id">
+<div class="row">
 
-        <option value="1" >Oil Cleanser</option>
-        <option value="2" >Water Cleanser</option>
-        <option value="3" >Toner</option>
-        <option value="4" >Essence</option>
-        <option value="5" >Exfoliant</option>
-        <option value="6" >Spot Treatment</option>
-        <option value="7" >Serum</option>
-        <option value="8" >Sheet Mask</option>
-        <option value="9" >Eye Treatment</option>
-        <option value="10" >Oil</option>
-        <option value="11" >Moisturizer</option>
-        <option value="12" >Sleeping Pack</option>
-        <option value="13" >Sunscreen</option>
+  <div class="col">
+    <div id="all-prods" ng-repeat="product in ctrl.allProducts">
+      <p>
+        {{ product.brand }} {{ product.name }}
+        <i ng-click="ctrl.showEditProductForm = true; ctrl.prodToEdit = product" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </p>
+    </div>
+  </div>
 
-      </select>
+  <div class="col" ng-if="ctrl.showAddProductForm === true">
+    <form class="prod-form justify-content-md-center">
+      <h4>Add a product to the database</h4>
+      <div class="form-group">
+        <label for="cat-dropdown">Category</label>
+        <select class="form-control" id="cat-dropdown" ng-model="formData.category_id">
+
+          <option value="1" >Oil Cleanser</option>
+          <option value="2" >Water Cleanser</option>
+          <option value="3" >Toner</option>
+          <option value="4" >Essence</option>
+          <option value="5" >Exfoliant</option>
+          <option value="6" >Spot Treatment</option>
+          <option value="7" >Serum</option>
+          <option value="8" >Sheet Mask</option>
+          <option value="9" >Eye Treatment</option>
+          <option value="10" >Oil</option>
+          <option value="11" >Moisturizer</option>
+          <option value="12" >Sleeping Pack</option>
+          <option value="13" >Sunscreen</option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="prod-brand">Product Brand</label>
+        <input id="prod-brand" type="text" placeholder="Magical Brand" ng-model="formData.brand">
+      </div>
+
+      <div class="form-group">
+        <label for="prod-name">Product Name</label>
+        <input id="prod-name" type="text" placeholder="Magical Product" ng-model="formData.name">
+      </div>
+
+      <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.addNewProduct(formData)">Submit</button>
+    </form>
+
+    <div id="new-prod">
+      <p ng-if="ctrl.showAddedProduct === true">
+        {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
+      </p>
     </div>
 
-    <div class="form-group">
-      <label for="prod-brand">Product Brand</label>
-      <input id="prod-brand" type="text" placeholder="Magical Brand" ng-model="formData.brand">
+  </div>
+
+  <!-- ====================================================================== -->
+
+  <div class="col" ng-if="ctrl.showEditProductForm === true">
+    <form class="prod-form justify-content-md-center">
+      <h4>Edit a product</h4>
+      <div class="form-group">
+        <label for="cat-dropdown">Category</label>
+        <select class="form-control" id="cat-dropdown" ng-model="formData.category_id">
+
+          <option value="1" >Oil Cleanser</option>
+          <option value="2" >Water Cleanser</option>
+          <option value="3" >Toner</option>
+          <option value="4" >Essence</option>
+          <option value="5" >Exfoliant</option>
+          <option value="6" >Spot Treatment</option>
+          <option value="7" >Serum</option>
+          <option value="8" >Sheet Mask</option>
+          <option value="9" >Eye Treatment</option>
+          <option value="10" >Oil</option>
+          <option value="11" >Moisturizer</option>
+          <option value="12" >Sleeping Pack</option>
+          <option value="13" >Sunscreen</option>
+
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="prod-brand">Product Brand</label>
+        <input id="prod-brand" type="text" placeholder={{ctrl.prodToEdit.brand}} ng-model="formData.brand">
+      </div>
+
+      <div class="form-group">
+        <label for="prod-name">Product Name</label>
+        <input id="prod-name" type="text" placeholder={{ctrl.prodToEdit.name}} ng-model="formData.name">
+      </div>
+
+      <input type="hidden" value={{ctrl.prodToEdit.id}}>
+
+      <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.editOneProduct(formData)">Submit</button>
+    </form>
+
+    <div id="edited-prod">
+      <p ng-if="ctrl.showEditedProduct === true">
+        {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
+      </p>
     </div>
 
-    <div class="form-group">
-      <label for="prod-name">Product Name</label>
-      <input id="prod-name" type="text" placeholder="Magical Product" ng-model="formData.name">
-    </div>
-
-    <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.addNewProduct(formData)">Submit</button>
-  </form>
-
-  <div id="new-prod">
-    <p ng-if="ctrl.showAddedProduct === true">
-      {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
-    </p>
   </div>
 
 </div>

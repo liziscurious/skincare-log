@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Quattrocento" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="https://use.fontawesome.com/24d8d35d3e.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </head>
@@ -56,11 +57,6 @@
         <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true">Add a product</a>
         <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
       </div>
-
-    </div>
-
-    <div id="all-prods" ng-repeat="product in ctrl.allProducts">
-      <p>{{ product.brand }} {{ product.name }}</p>
 
     </div>
 
