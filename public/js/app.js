@@ -20,7 +20,6 @@ app.controller('MainController', ['$http', function($http){
   this.userLogs = {};
 
   this.createUser = (userRegister) => {
-    console.log(userRegister);
     $http({
       method: 'POST',
       url: this.url + 'users',
