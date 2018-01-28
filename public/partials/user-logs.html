@@ -5,13 +5,23 @@
 
     <div ng-repeat="userLog in ctrl.userLogs">
       <p ng-click="ctrl.getOneLog(userLog)">
-        {{ userLog.name }}
+        {{ userLog.name }} <span ng-click="ctrl.showEditLogName = true; ctrl.logToEdit = userLog" class="fa fa-pencil-square-o" aria-hidden="true"></span>
       </p>
     </div>
 
   </div>
 
   <div class="col">
+
+    <div ng-if="ctrl.showEditLogName === true">
+      <form ng-submit="ctrl.editLogName(formData)">
+        <label for="new-log-name">Edit your log title</label>
+        <input id="new-log-name" type="text" placeholder="Date & Time of Day" ng-model="formData.name"/>
+        <label for="edit-log-btn">Submit</label>
+        <input id="edit-log-btn" class="btn btn-outline-primary" type="submit"/>
+      </form>
+    </div>
+
     <p>{{ ctrl.oneLog.name }}</p>
     <div ng-repeat="logEntry in ctrl.oneLog.products">
       {{ logEntry.brand }}

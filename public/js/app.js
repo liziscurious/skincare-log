@@ -13,6 +13,7 @@ app.controller('MainController', ['$http', function($http){
   this.newProduct = {};
   this.updatedProduct = [];
   this.allProducts = {};
+  this.logToEdit = {};
 
   this.showLogInForm = false;
   this.showCategories = false;
@@ -26,6 +27,7 @@ app.controller('MainController', ['$http', function($http){
   this.showAddedProduct = false;
   this.showEditProductForm = false;
   this.showEditedProduct = false;
+  this.showEditLogName = false;
 
 
   this.createUser = (userRegister) => {
@@ -194,6 +196,17 @@ app.controller('MainController', ['$http', function($http){
       this.currentLog = response.data;
       console.log(this.currentLog);
       this.showCategories = true;
+    }).catch(err => console.log(err));
+  };
+
+  this.editLogName = (formData) => {
+    $http({
+      method: 'PUT',
+      url: this.url + 'users/' + this.user.id + '/logs/' + this.logToEdit.id,
+      data: { name: formData.name }
+    }).then(response => {
+      this.logToEdit = response.data;
+      this.getOneLog(this.logToEdit);
     }).catch(err => console.log(err));
   };
 
