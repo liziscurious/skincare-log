@@ -16,7 +16,7 @@ app.controller('MainController', ['$http', function($http){
   this.user = {};
   this.currentLogEntries = {};
   this.showUserLogs = false;
-  // this.userLogs = {};
+  this.userLogs = {};
 
   this.createUser = (userRegister) => {
     console.log(userRegister);
@@ -111,6 +111,17 @@ app.controller('MainController', ['$http', function($http){
       this.userLogs = response.data;
       this.showUserLogs = true;
       console.log(this.userLogs);
+    }).catch(err => console.log(err));
+  };
+
+  this.getOneLog = (log) => {
+    console.log('getting a log soon....');
+    $http({
+      method: 'GET',
+      url: this.url + 'users/' + this.user.id + '/logs/' + log.id
+    }).then(response => {
+      this.oneLog = response.data;
+      console.log(this.oneLog);
     }).catch(err => console.log(err));
   };
 
