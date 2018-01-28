@@ -3,21 +3,24 @@ const app = angular.module('SkincareLog', []);
 app.controller('MainController', ['$http', function($http){
 
   this.message = 'How many steps are in your routine?';
-  // this.url = 'http://localhost:3000/';
-  this.url = 'https://skincare-log-api.herokuapp.com/'
+  this.url = 'http://localhost:3000/';
+  // this.url = 'https://skincare-log-api.herokuapp.com/'
   this.user = {};
+  this.categories = [];
+  this.user = {};
+  this.currentLogEntries = {};
+  this.userLogs = {};
+  this.newProduct = {};
+
   this.showLogInForm = false;
   this.showCategories = false;
   this.showOneCategory = false;
-  this.categories = [];
   this.showRegisterForm = false;
   this.loggedIn = false;
   this.landing = true;
   this.addLog = false;
-  this.user = {};
-  this.currentLogEntries = {};
   this.showUserLogs = false;
-  this.userLogs = {};
+  this.showAddProductForm = true;
 
   this.createUser = (userRegister) => {
     $http({
@@ -33,7 +36,6 @@ app.controller('MainController', ['$http', function($http){
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
         this.showRegisterForm = false;
-        console.log('It works!');
       };
     });
   };
@@ -99,6 +101,23 @@ app.controller('MainController', ['$http', function($http){
     }).then (response => {
       this.oneCategory = response.data;
       this.showOneCategory = true;
+    }).catch(err => console.log(err));
+  };
+
+  this.addNewProduct = (formData) => {
+    this.newProduct = formData;
+    console.log(this.newProduct);
+    $http({
+      method: 'POST',
+      url: this.url + 'products/',
+      data: {
+        brand: this.newProduct.brand,
+        name: this.newProduct.name,
+        category_id: this.newProduct.category_id
+      }
+    }).then(response => {
+      console.log('new product posted sucessfully!');
+      this.getCategories();
     }).catch(err => console.log(err));
   };
 
