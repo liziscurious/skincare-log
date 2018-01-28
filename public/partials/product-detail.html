@@ -1,4 +1,3 @@
-Partial works!
 <div class="row" ng-if="ctrl.showAddProductForm === true">
   <form class="col-sm prod-form justify-content-md-center">
     <h4>Add a product to the database</h4>
@@ -35,4 +34,11 @@ Partial works!
 
     <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.addNewProduct(formData)">Submit</button>
   </form>
+
+  <div id="new-prod">
+    <p ng-if="ctrl.showAddedProduct === true">
+      {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
+    </p>
+  </div>
+
 </div>

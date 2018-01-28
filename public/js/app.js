@@ -20,7 +20,9 @@ app.controller('MainController', ['$http', function($http){
   this.landing = true;
   this.addLog = false;
   this.showUserLogs = false;
-  this.showAddProductForm = true;
+  this.showAddProductForm = false;
+  this.showAddedProduct = false;
+  this.allProducts = {};
 
   this.createUser = (userRegister) => {
     $http({
@@ -104,6 +106,18 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  this.getAllProducts = () => {
+    console.log('Get All Products Button works!');
+    $http({
+      method: 'GET',
+      url: this.url + 'products'
+    }).then(response => {
+      // console.log(response.data);
+      this.allProducts = response.data;
+      console.log(this.allProducts);
+    })
+  };
+
   this.addNewProduct = (formData) => {
     this.newProduct = formData;
     console.log(this.newProduct);
@@ -117,6 +131,9 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       console.log('new product posted sucessfully!');
+      this.addedProduct = response.data;
+      console.log(this.addedProduct);
+      this.showAddedProduct = true;
       this.getCategories();
     }).catch(err => console.log(err));
   };
