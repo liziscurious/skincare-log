@@ -23,6 +23,8 @@ app.controller('MainController', ['$http', function($http){
   this.showAddProductForm = false;
   this.showAddedProduct = false;
   this.showEditProductForm = false;
+  this.showEditedProduct = false;
+  this.updatedProduct = [];
   this.allProducts = {};
 
   this.createUser = (userRegister) => {
@@ -108,7 +110,6 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.getAllProducts = () => {
-    console.log('Get All Products Button works!');
     $http({
       method: 'GET',
       url: this.url + 'products'
@@ -121,7 +122,6 @@ app.controller('MainController', ['$http', function($http){
 
   this.addNewProduct = (formData) => {
     this.newProduct = formData;
-    console.log(this.newProduct);
     $http({
       method: 'POST',
       url: this.url + 'products/',
@@ -131,20 +131,17 @@ app.controller('MainController', ['$http', function($http){
         category_id: this.newProduct.category_id
       }
     }).then(response => {
-      console.log('new product posted sucessfully!');
       this.addedProduct = response.data;
-      console.log(this.addedProduct);
+      console.log('New product added is: ', this.addedProduct);
       this.showAddedProduct = true;
       this.formData = {};
-      this.getCategories();
+      this.getAllProducts();
     }).catch(err => console.log(err));
   };
 
   this.editOneProduct = (formData) => {
-    console.log('Edit one product button works');
-    console.log(this.prodToEdit);
+    // console.log(this.prodToEdit);
     this.editedProduct = formData;
-    console.log(this.editedProduct);
     $http({
       method: 'PUT',
       url: this.url + 'products/' + this.prodToEdit.id,
@@ -153,9 +150,11 @@ app.controller('MainController', ['$http', function($http){
         name: this.editedProduct.name
       }
     }).then(response => {
-      console.log(response.data);
-      getAllProducts();
-    })
+      this.showEditedProduct = true;
+      this.updatedProduct = response.data;
+      console.log('Updated product is: ', this.updatedProduct);
+      this.getAllProducts();
+    }).catch(err => console.log(err));
   };
 
   this.getLogs = () => {

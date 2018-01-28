@@ -54,7 +54,7 @@
 
       <div ng-if="ctrl.loggedIn === true">
         <p>Hi {{ ctrl.user.username }} !</p>
-        <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true">Add a product</a>
+        <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true; ctrl.getAllProducts()">Add a product</a>
         <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
       </div>
 

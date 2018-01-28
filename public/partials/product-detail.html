@@ -48,9 +48,10 @@
 
     <div id="new-prod">
       <p ng-if="ctrl.showAddedProduct === true">
-        {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
+        Added: {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
       </p>
     </div>
+    <button class="btn btn-outline-secondary btn-sm" ng-click="ctrl.showAddProductForm = false">Close</button>
 
   </div>
 
@@ -95,12 +96,14 @@
       <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.editOneProduct(formData)">Submit</button>
     </form>
 
-    <div id="edited-prod">
-      <p ng-if="ctrl.showEditedProduct === true">
-        {{ ctrl.addedProduct.brand }} {{ ctrl.addedProduct.name }}
+    <div id="edited-prod" ng-if="ctrl.showEditedProduct === true">
+      <p>
+        Product Updated to:
+        {{ ctrl.updatedProduct.brand }}
+        {{ ctrl.updatedProduct.name }}
       </p>
     </div>
-
+    <button class="btn btn-outline-secondary btn-sm" ng-click="ctrl.showEditProductForm = false">Close</button>
   </div>
 
 </div>
