@@ -3,7 +3,8 @@ const app = angular.module('SkincareLog', []);
 app.controller('MainController', ['$http', function($http){
 
   this.message = 'How many steps are in your routine?';
-  this.url = 'http://localhost:3000/';
+  // this.url = 'http://localhost:3000/';
+  this.url = 'https://skincare-log-api.herokuapp.com/'
   this.user = {};
   this.showLogInForm = false;
   this.showCategories = false;
