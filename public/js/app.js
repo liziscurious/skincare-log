@@ -14,8 +14,9 @@ app.controller('MainController', ['$http', function($http){
   this.landing = true;
   this.addLog = false;
   this.user = {};
-  this.getOneProductId = null;
   this.currentLogEntries = {};
+  this.showUserLogs = false;
+  // this.userLogs = {};
 
   this.createUser = (userRegister) => {
     console.log(userRegister);
@@ -101,11 +102,17 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
-  // Test route to get product id
-  // this.getOneProduct = (product) => {
-  //   this.getOneProductId = product.id;
-  //   console.log(this.getOneProductId);
-  // };
+  this.getLogs = () => {
+    console.log('this button works!');
+    $http({
+      method: 'GET',
+      url: this.url + 'users/' + this.user.id + '/logs'
+    }).then(response => {
+      this.userLogs = response.data;
+      this.showUserLogs = true;
+      console.log(this.userLogs);
+    }).catch(err => console.log(err));
+  };
 
   this.addNewLog = () => {
     console.log(this.user.id);
@@ -119,6 +126,7 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       this.currentLog = response.data;
       console.log(this.currentLog);
+      this.showCategories = true;
     }).catch(err => console.log(err));
   };
 
@@ -134,6 +142,7 @@ app.controller('MainController', ['$http', function($http){
         product_id: this.newEntry
       }
     }).then(response => {
+      console.log('New entry has been posted!');
       // this.newProductEntry = response.data;
       // this.currentLogEntries.push(this.newProductEntry);
       // console.log(this.currentLogEntries);

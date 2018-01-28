@@ -15,6 +15,7 @@
 
 <body ng-controller='MainController as ctrl'>
   <div class="container">
+
     <!-- Nav -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AA96A7">
       <a class="navbar-brand" href="#">SkincareLog</a>
@@ -23,8 +24,14 @@
           <li class="nav-item">
             <a class="nav-link" ng-click="ctrl.showCategories = true">Categories</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Products</a>
+          <li class="nav-item" ng-if="ctrl.loggedIn === true">
+            <a class="nav-link" ng-click="ctrl.getLogs()">Your logs</a>
+          </li>
+          <li class="nav-item" ng-if="ctrl.loggedIn === true">
+            <a class="nav-link" ng-click="ctrl.addLog = true">Start a new entry</a>
+          </li>
+          <li class="nav-item" ng-if="ctrl.loggedIn === true">
+            <a class="nav-link" ng-click="ctrl.logout()">Log Out</a>
           </li>
         </ul>
       </div>
@@ -32,24 +39,27 @@
 
     <!-- Landing intro information -->
     <div class="landing jumbotron" ng-if="ctrl.landing === true">
-      <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
-      <div>
-        <a class="btn btn-outline-secondary" ng-click="ctrl.showRegisterForm = true">Sign Up</a>
-        <a class="btn btn-outline-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
-        <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
-        <a class="btn btn-outline-secondary" ng-if="ctrl.loggedIn === true" href="#">Add a product</a>
+
+      <div ng-if="ctrl.loggedIn === false">
+        <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
+        <div>
+          <a class="btn btn-outline-secondary" ng-click="ctrl.showRegisterForm = true">Sign Up</a>
+          <a class="btn btn-outline-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
+          <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+        </div>
       </div>
+
+      <div ng-include="'partials/auth-login.html'"></div>
+
+      <div ng-if="ctrl.loggedIn === true">
+        <p>Hi {{ ctrl.user.username }} !</p>
+        <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true">Add a product</a>
+        <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+      </div>
+
     </div>
 
-    <div ng-include="'partials/auth-login.html'"></div>
-
-    <!-- Log In Greeting -->
-    <div ng-if="ctrl.loggedIn === true">
-      <p>Welcome {{ ctrl.user.username }}
-        <a href="#" ng-click="ctrl.logout()">Log Out</a>
-      </p>
-      <a class="btn btn-outline-secondary" type="button" ng-click="ctrl.addLog = true">Start a new entry</a>
-    </div>
+    <div ng-include="'partials/user-logs.html'"></div>
 
     <!-- Log Your Skincare Routine -->
     <div class="add-log" ng-if="ctrl.addLog === true">
