@@ -1,16 +1,22 @@
-<div ng-if="ctrl.showUserLogs === true">
-  <h1>Your Skincare Logs!</h1>
+<div class="row" ng-if="ctrl.showUserLogs === true">
 
-  <div ng-repeat="userLog in ctrl.userLogs">
-    <p ng-click="ctrl.getOneLog(userLog)">
-      {{ userLog.name }}
-    </p>
+  <div class="col">
+    <h1>Your Skincare Logs!</h1>
+
+    <div ng-repeat="userLog in ctrl.userLogs">
+      <p ng-click="ctrl.getOneLog(userLog)">
+        {{ userLog.name }}
+      </p>
+    </div>
+
   </div>
 
-  <p>{{ oneLog.name }}</p>
-  <div ng-repeat="logEntry in ctrl.oneLog.products">
-    {{ logEntry.brand }}
-    {{ logEntry.name }}
+  <div class="col">
+    <p>{{ ctrl.oneLog.name }}</p>
+    <div ng-repeat="logEntry in ctrl.oneLog.products">
+      {{ logEntry.brand }}
+      {{ logEntry.name }}
+    </div>
   </div>
 
 </div>

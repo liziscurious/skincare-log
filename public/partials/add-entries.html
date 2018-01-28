@@ -3,6 +3,11 @@
 
     <div class="categories col" ng-if="ctrl.showCategories === true">
       <h3>Add products to your log entry</h3>
+      <h2>{{ ctrl.currentLog.name }}</h2>
+      <div ng-repeat="product in ctrl.currentLog.products">
+        {{ product.brand }}
+        {{ product.name }}
+      </div>
       <div ng-repeat="category in ctrl.categories">
         <p class="cat-name" ng-click="ctrl.getOneCategory(category)">
           {{ category.name }} </p>

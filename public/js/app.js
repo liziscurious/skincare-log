@@ -2,15 +2,17 @@ const app = angular.module('SkincareLog', []);
 
 app.controller('MainController', ['$http', function($http){
 
-  this.message = 'How many steps are in your routine?';
   this.url = 'http://localhost:3000/';
   // this.url = 'https://skincare-log-api.herokuapp.com/'
   this.user = {};
+  this.error = null;
   this.categories = [];
   this.user = {};
   this.currentLogEntries = {};
   this.userLogs = {};
   this.newProduct = {};
+  this.updatedProduct = [];
+  this.allProducts = {};
 
   this.showLogInForm = false;
   this.showCategories = false;
@@ -24,8 +26,7 @@ app.controller('MainController', ['$http', function($http){
   this.showAddedProduct = false;
   this.showEditProductForm = false;
   this.showEditedProduct = false;
-  this.updatedProduct = [];
-  this.allProducts = {};
+
 
   this.createUser = (userRegister) => {
     $http({
@@ -34,13 +35,14 @@ app.controller('MainController', ['$http', function($http){
       data: { user: { username: userRegister.username, password: userRegister.password }}
     }).then(response => {
       if (response.data.status === 401){
-        this.error = "Username or Password Incorrect";
+        this.error = "Oops try again!"
       } else {
         this.user = response.data.user;
         console.log('Logged in user is ', this.user.username, '. User ID is ', this.user.id);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
         this.showRegisterForm = false;
+        this.error = null;
       };
     });
   };
@@ -52,13 +54,14 @@ app.controller('MainController', ['$http', function($http){
       data: { user: { username: userPass.username, password: userPass.password }}
     }).then(response => {
       if (response.data.status === 401) {
-        this.error = "Unauthorized";
+        this.error = "Username or Password Incorrect";
       } else {
         this.user = response.data.user;
         console.log('Logged in user is ', this.user.username, '. User ID is ', this.user.id);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         this.loggedIn = true;
         this.showLogInForm = false;
+        this.error = null;
       };
     });
   };
@@ -207,10 +210,9 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       console.log('New entry has been posted!');
-      // this.newProductEntry = response.data;
-      // this.currentLogEntries.push(this.newProductEntry);
-      // console.log(this.currentLogEntries);
-      // posting properly, not pushing into front end yet
+      console.log(this.currentLog);
+      this.getLogs();
+      this.newProductEntry = response.data;
     }).catch(err => console.log(err));
   };
 
