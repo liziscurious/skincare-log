@@ -3,7 +3,7 @@ const app = angular.module('SkincareLog', []);
 app.controller('MainController', ['$http', function($http){
 
   // this.url = 'http://localhost:3000/';
-  this.url = 'https://skincare-log-api.herokuapp.com/'
+  this.url = 'https://skincare-log-api.herokuapp.com/';
   this.user = {};
   this.error = null;
   this.categories = [];
@@ -31,7 +31,6 @@ app.controller('MainController', ['$http', function($http){
   this.showEditedProduct = false;
   this.showEditLogName = false;
   this.showDeletePrompt = false;
-
 
   this.createUser = (userRegister) => {
     $http({
@@ -194,7 +193,7 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       this.currentLog = response.data;
-      this.showCategories = true;
+      this.showCategoriesToAdd = true;
     }).catch(err => console.log(err));
   };
 

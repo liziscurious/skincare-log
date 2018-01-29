@@ -2,8 +2,11 @@
   <div class="cat-products row">
 
     <div class="categories col" ng-if="ctrl.showCategories === true">
-      <h3>Add products to your log entry</h3>
-      <h2>{{ ctrl.currentLog.name }}</h2>
+      <div ng-if="ctrl.addLog === true">
+        <h3>Add products to your log entry</h3>
+        <h2>{{ ctrl.currentLog.name }}</h2>
+      </div>
+      <h3>Categories</h3>
       <div ng-repeat="product in ctrl.currentLog.products">
         {{ product.brand }}
         {{ product.name }}
@@ -20,7 +23,7 @@
         <form>
           <p class="product-name">
             {{ oneProduct.brand }} {{ oneProduct.name }}
-            <button type="submit" class="btn btn-outline-secondary" ng-click="ctrl.addNewEntry(oneProduct.id)">Add</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-if="ctrl.addLog === true" ng-click="ctrl.addNewEntry(oneProduct.id)">Add</button>
           </p>
         </form>
     </div>
