@@ -5,7 +5,9 @@
 
     <div ng-repeat="userLog in ctrl.userLogs">
       <p ng-click="ctrl.getOneLog(userLog)">
-        {{ userLog.name }} <span ng-click="ctrl.showEditLogName = true; ctrl.logToEdit = userLog" class="fa fa-pencil-square-o" aria-hidden="true"></span>
+        {{ userLog.name }}
+        <span ng-click="ctrl.showEditLogName = true; ctrl.logToEdit = userLog" class="fa fa-pencil-square-o" aria-hidden="true"></span>
+        <span ng-click="ctrl.showDeletePrompt = true; ctrl.logToDelete = userLog" class="fa fa-trash-o" aria-hidden="true"></span>
       </p>
     </div>
 
@@ -20,6 +22,12 @@
         <label for="edit-log-btn">Submit</label>
         <input id="edit-log-btn" class="btn btn-outline-primary" type="submit"/>
       </form>
+    </div>
+
+    <div ng-if="ctrl.showDeletePrompt === true">
+      <p>Are you sure you want to delete this log?</p>
+      <button class="btn btn-outline-primary btn-sm" ng-click="ctrl.deleteLog(ctrl.logToDelete.id)" name="Delete">Delete</button>
+      <button class="btn btn-outline-secondary" ng-click="ctrl.showDeletePrompt = false" name="Close">Close</button>
     </div>
 
     <p>{{ ctrl.oneLog.name }}</p>

@@ -14,6 +14,7 @@ app.controller('MainController', ['$http', function($http){
   this.updatedProduct = [];
   this.allProducts = {};
   this.logToEdit = {};
+  this.deleteLogId = null;
 
   this.showLogInForm = false;
   this.showCategories = false;
@@ -28,6 +29,7 @@ app.controller('MainController', ['$http', function($http){
   this.showEditProductForm = false;
   this.showEditedProduct = false;
   this.showEditLogName = false;
+  this.showDeletePrompt = false;
 
 
   this.createUser = (userRegister) => {
@@ -207,6 +209,19 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       this.logToEdit = response.data;
       this.getOneLog(this.logToEdit);
+      this.formData = {};
+    }).catch(err => console.log(err));
+  };
+
+  this.deleteLog = (formData) => {
+    this.deleteLogId = formData;
+    $http({
+      method: 'DELETE',
+      url: this.url +'users/' + this.user.id + '/logs/' + this.deleteLogId,
+    }).then(response => {
+      this.showDeletePrompt = false;
+      this.deleteLogId = null;
+      this.getLogs();
     }).catch(err => console.log(err));
   };
 
