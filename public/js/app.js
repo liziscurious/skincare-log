@@ -2,8 +2,8 @@ const app = angular.module('SkincareLog', []);
 
 app.controller('MainController', ['$http', function($http){
 
-  // this.url = 'http://localhost:3000/';
-  this.url = 'https://skincare-log-api.herokuapp.com/';
+  this.url = 'http://localhost:3000/';
+  // this.url = 'https://skincare-log-api.herokuapp.com/';
   this.user = {};
   this.error = null;
   this.categories = [];
@@ -112,6 +112,7 @@ app.controller('MainController', ['$http', function($http){
       url: this.url + 'categories/' + this.oneCategoryId
     }).then (response => {
       this.oneCategory = response.data;
+      console.log(this.oneCategory);
       this.showOneCategory = true;
     }).catch(err => console.log(err));
   };
@@ -193,7 +194,7 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       this.currentLog = response.data;
-      this.showCategoriesToAdd = true;
+      this.showCategories = true;
     }).catch(err => console.log(err));
   };
 

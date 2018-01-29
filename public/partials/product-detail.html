@@ -43,6 +43,11 @@
         <input id="prod-name" type="text" placeholder="Magical Product" ng-model="formData.name">
       </div>
 
+      <div class="form-group">
+        <label for="prod-url">Product URL</label>
+        <input id="prod-url" type="text" placeholder="Link to item" ng-model="formData.url">
+      </div>
+
       <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.addNewProduct(formData)">Submit</button>
     </form>
 
@@ -82,13 +87,18 @@
       </div>
 
       <div class="form-group">
-        <label for="prod-brand">Product Brand</label>
-        <input id="prod-brand" type="text" placeholder={{ctrl.prodToEdit.brand}} ng-model="formData.brand">
+        <label for="edit-prod-brand">Product Brand</label>
+        <input id="edit-prod-brand" type="text" placeholder={{ctrl.prodToEdit.brand}} ng-model="formData.brand">
       </div>
 
       <div class="form-group">
-        <label for="prod-name">Product Name</label>
-        <input id="prod-name" type="text" placeholder={{ctrl.prodToEdit.name}} ng-model="formData.name">
+        <label for="edit-prod-name">Product Name</label>
+        <input id="edit-prod-name" type="text" placeholder={{ctrl.prodToEdit.name}} ng-model="formData.name">
+      </div>
+
+      <div class="form-group">
+        <label for="edit-prod-url">Product URL</label>
+        <input id="edit-prod-url" type="text" placeholder={{ctrl.prodToEdit.url}} ng-model="formData.url">
       </div>
 
       <input type="hidden" value={{ctrl.prodToEdit.id}}>

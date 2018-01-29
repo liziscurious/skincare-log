@@ -2,15 +2,7 @@
   <div class="cat-products row">
 
     <div class="categories col" ng-if="ctrl.showCategories === true">
-      <div ng-if="ctrl.addLog === true">
-        <h3>Add products to your log entry</h3>
-        <h2>{{ ctrl.currentLog.name }}</h2>
-      </div>
       <h3>Categories</h3>
-      <div ng-repeat="product in ctrl.currentLog.products">
-        {{ product.brand }}
-        {{ product.name }}
-      </div>
       <div ng-repeat="category in ctrl.categories">
         <p class="cat-name" ng-click="ctrl.getOneCategory(category)">
           {{ category.name }} </p>
@@ -22,8 +14,9 @@
       <div ng-repeat="oneProduct in ctrl.oneCategory.products">
         <form>
           <p class="product-name">
-            {{ oneProduct.brand }} {{ oneProduct.name }}
-            <button type="submit" class="btn btn-outline-secondary" ng-if="ctrl.addLog === true" ng-click="ctrl.addNewEntry(oneProduct.id)">Add</button>
+            {{ oneProduct.brand }}
+            <a href="{{ oneProduct.url }}" target="blank">{{ oneProduct.name }}</a>
+            <button type="submit" class="btn btn-outline-secondary btn-sm" ng-if="ctrl.addLog === true" ng-click="ctrl.addNewEntry(oneProduct.id)">Add</button>
           </p>
         </form>
     </div>
