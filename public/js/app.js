@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', function($http){
   this.error = null;
   this.categories = [];
   this.user = {};
+  this.currentLog = {};
   this.currentLogEntries = {};
   this.userLogs = {};
   this.newProduct = {};
@@ -171,7 +172,6 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       this.userLogs = response.data;
       this.showUserLogs = true;
-      console.log(this.userLogs);
     }).catch(err => console.log(err));
   };
 
@@ -181,12 +181,10 @@ app.controller('MainController', ['$http', function($http){
       url: this.url + 'users/' + this.user.id + '/logs/' + log.id
     }).then(response => {
       this.oneLog = response.data;
-      console.log(this.oneLog);
     }).catch(err => console.log(err));
   };
 
   this.addNewLog = () => {
-    console.log(this.user.id);
     $http({
       method: 'POST',
       url: this.url + 'users/' + this.user.id + '/logs',
@@ -196,7 +194,6 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       this.currentLog = response.data;
-      console.log(this.currentLog);
       this.showCategories = true;
     }).catch(err => console.log(err));
   };
@@ -204,11 +201,11 @@ app.controller('MainController', ['$http', function($http){
   this.editLogName = (formData) => {
     $http({
       method: 'PUT',
-      url: this.url + 'users/' + this.user.id + '/logs/' + this.logToEdit.id,
+      url: this.url + 'users/' + this.user.id + '/logs/' + this.currentLog.id,
       data: { name: formData.name }
     }).then(response => {
-      this.logToEdit = response.data;
-      this.getOneLog(this.logToEdit);
+      this.currentLog = response.data;
+      this.getOneLog(this.currentLog);
       this.formData = {};
     }).catch(err => console.log(err));
   };
@@ -226,9 +223,7 @@ app.controller('MainController', ['$http', function($http){
   };
 
   this.addNewEntry = (prod) => {
-    console.log('Adding to this log ', this.currentLog);
     this.newEntry = prod;
-    console.log(this.newEntry);
     $http({
       method: 'POST',
       url: this.url + 'users/' + this.user.id + '/logs/' + this.currentLog.id + '/entries',
@@ -237,10 +232,8 @@ app.controller('MainController', ['$http', function($http){
         product_id: this.newEntry
       }
     }).then(response => {
-      console.log('New entry has been posted!');
-      console.log(this.currentLog);
       this.getLogs();
-      this.newProductEntry = response.data;
+      this.getOneLog(this.currentLog);
     }).catch(err => console.log(err));
   };
 
