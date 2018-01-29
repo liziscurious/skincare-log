@@ -19,8 +19,11 @@
 
     <!-- Nav -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #AA96A7">
-      <a class="navbar-brand" href="#">SkincareLog</a>
-      <div class="collapse navbar-collapse">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">SkincareLog</a>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" ng-if="ctrl.loggedIn === true">
             <a class="nav-link" ng-click="ctrl.getAllProducts()">View Products</a>
@@ -36,6 +39,7 @@
           </li>
         </ul>
       </div>
+
     </nav>
 
     <!-- Landing intro information -->

@@ -237,4 +237,11 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // this.deleteEntry = (log, entry) => {
+  //   this.deleteOneEntry = entry;
+  //   console.log(this.deleteOneEntry);
+  //   console.log(log);
+  //   console.log(this.currentLog);
+  // };
+
 }]);
