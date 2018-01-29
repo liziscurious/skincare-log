@@ -33,10 +33,10 @@
     </div>
 
     <p>{{ ctrl.oneLog.name }}</p>
-    <div ng-repeat="logEntry in ctrl.oneLog.products">
-      {{ logEntry.brand }}
-      {{ logEntry.name }}
-      <!-- <span ng-click="ctrl.deleteEntry(logEntry, oneLog)" class="fa fa-trash-o"></span> -->
+    <div ng-repeat="loggedProduct in ctrl.oneLog.products">
+      {{ loggedProduct.brand }}
+      {{ loggedProduct.name }}
+      <span ng-click="ctrl.deleteEntry(loggedProduct, ctrl.oneLog)" class="fa fa-trash-o"></span>
     </div>
   </div>
 

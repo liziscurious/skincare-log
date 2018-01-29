@@ -1,5 +1,6 @@
 * {
   font-family: 'Quattrocento', serif;
+
 }
 
 .btn {
@@ -26,4 +27,18 @@
 
 .cat-name:hover, .product-name:hover {
   cursor: pointer !important;
+}
+
+.jumbotron {
+  background-image: url('../images/noah-buscher-385639.jpg');
+  background-position: center;
+  background-size: cover;
+  color: BlanchedAlmond;
+}
+
+#welcome {
+  font-weight: bold;
+  border: 1px solid BlanchedAlmond;
+  border-radius: 8px;
+  padding: 8px;
 }

@@ -16,6 +16,7 @@ app.controller('MainController', ['$http', function($http){
   this.allProducts = {};
   this.logToEdit = {};
   this.deleteLogId = null;
+  this.currentEntries = [];
 
   this.showLogInForm = false;
   this.showCategories = false;
@@ -237,11 +238,22 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
-  // this.deleteEntry = (log, entry) => {
-  //   this.deleteOneEntry = entry;
-  //   console.log(this.deleteOneEntry);
-  //   console.log(log);
-  //   console.log(this.currentLog);
-  // };
+  this.deleteEntry = (prod, log) => {
+    this.currentEntries = log.entries;
+
+    // function to find the entry to delete
+    const entryToDelete =
+     this.currentEntries.filter(entry => entry.product_id === prod.id);
+     
+    this.deleteEntryId = entryToDelete[0].id;
+
+    $http({
+      method: 'DELETE',
+      url: this.url + 'users/' + this.user.id + '/logs/' + this.currentLog.id + '/entries/' + this.deleteEntryId
+    }).then(response => {
+      this.currentLog = {};
+      this.getOneLog(log);
+    }).catch(err => console.log(err));
+  };
 
 }]);

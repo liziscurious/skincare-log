@@ -47,11 +47,11 @@
     <div class="landing jumbotron" ng-if="ctrl.landing === true">
 
       <div ng-if="ctrl.loggedIn === false">
-        <p>Welcome to Skincare Log, a place to log your daily skincare routine.</p>
+        <p id="welcome">Welcome to Skincare Log, a place to log your daily skincare routine.</p>
         <div>
-          <a class="btn btn-outline-secondary" ng-click="ctrl.showRegisterForm = true">Sign Up</a>
-          <a class="btn btn-outline-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
-          <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+          <a class="btn btn-secondary" ng-click="ctrl.showRegisterForm = true">Sign Up</a>
+          <a class="btn btn-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
+          <a class="btn btn-secondary" href="#">Tell Me More</a>
         </div>
       </div>
 
@@ -60,7 +60,7 @@
       <div ng-if="ctrl.loggedIn === true">
         <p>Hi {{ ctrl.user.username }} !</p>
         <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true; ctrl.getAllProducts()">Add a product</a>
-        <a class="btn btn-outline-secondary" href="#">Tell Me More</a>
+        <a class="btn btn-outline-secondary" ng-click="ctrl.getLogs()">Your logs</a>
       </div>
 
     </div>
