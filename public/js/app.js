@@ -2,8 +2,8 @@ const app = angular.module('SkincareLog', []);
 
 app.controller('MainController', ['$http', function($http){
 
-  this.url = 'http://localhost:3000/';
-  // this.url = 'https://skincare-log-api.herokuapp.com/';
+  // this.url = 'http://localhost:3000/';
+  this.url = 'https://skincare-log-api.herokuapp.com/';
   this.user = {};
   this.error = null;
   this.categories = [];
@@ -33,6 +33,7 @@ app.controller('MainController', ['$http', function($http){
   this.showEditLogName = false;
   this.showDeletePrompt = false;
 
+  // Register function
   this.createUser = (userRegister) => {
     $http({
       method: 'POST',
@@ -52,6 +53,7 @@ app.controller('MainController', ['$http', function($http){
     });
   };
 
+  // Log in
   this.login = (userPass) => {
     $http({
       method: 'POST',
@@ -88,6 +90,7 @@ app.controller('MainController', ['$http', function($http){
     }.bind(this));
   };
 
+  // Logout
   this.logout = function () {
     localStorage.clear('token');
     location.reload();
@@ -104,8 +107,10 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Initial get all categories call
   this.getCategories();
 
+  // Get One Category with its products
   this.getOneCategory = (category) => {
     this.oneCategoryId = category.id
     $http({
@@ -118,17 +123,18 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Get all products
   this.getAllProducts = () => {
     $http({
       method: 'GET',
       url: this.url + 'products'
     }).then(response => {
-      // console.log(response.data);
       this.allProducts = response.data;
       console.log(this.allProducts);
     })
   };
 
+  // Add new product
   this.addNewProduct = (formData) => {
     this.newProduct = formData;
     $http({
@@ -148,8 +154,8 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Edit a product
   this.editOneProduct = (formData) => {
-    // console.log(this.prodToEdit);
     this.editedProduct = formData;
     $http({
       method: 'PUT',
@@ -166,6 +172,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Get logs from one user
   this.getLogs = () => {
     $http({
       method: 'GET',
@@ -176,6 +183,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Get one log's details
   this.getOneLog = (log) => {
     $http({
       method: 'GET',
@@ -185,6 +193,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Add a new log
   this.addNewLog = () => {
     $http({
       method: 'POST',
@@ -199,6 +208,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Edit one log
   this.editLogName = (formData) => {
     $http({
       method: 'PUT',
@@ -211,6 +221,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Delete a log
   this.deleteLog = (formData) => {
     this.deleteLogId = formData;
     $http({
@@ -223,6 +234,7 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Add a new log entry
   this.addNewEntry = (prod) => {
     this.newEntry = prod;
     $http({
@@ -238,20 +250,21 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.log(err));
   };
 
+  // Delete a log entry (join table item b/w logs and products)
   this.deleteEntry = (prod, log) => {
     this.currentEntries = log.entries;
 
     // function to find the entry to delete
     const entryToDelete =
      this.currentEntries.filter(entry => entry.product_id === prod.id);
-     
+
     this.deleteEntryId = entryToDelete[0].id;
 
     $http({
       method: 'DELETE',
       url: this.url + 'users/' + this.user.id + '/logs/' + this.currentLog.id + '/entries/' + this.deleteEntryId
     }).then(response => {
-      this.currentLog = {};
+      this.deleteEntryId = {};
       this.getOneLog(log);
     }).catch(err => console.log(err));
   };

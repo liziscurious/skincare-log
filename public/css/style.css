@@ -1,6 +1,5 @@
 * {
   font-family: 'Quattrocento', serif;
-
 }
 
 .btn {
@@ -30,15 +29,22 @@
 }
 
 .jumbotron {
-  background-image: url('../images/noah-buscher-385639.jpg');
+  background-image: url('../images/banner.jpg');
   background-position: center;
   background-size: cover;
   color: BlanchedAlmond;
 }
 
 #welcome {
-  font-weight: bold;
-  border: 1px solid BlanchedAlmond;
   border-radius: 8px;
   padding: 8px;
+}
+
+.btn-secondary, #welcome {
+  background-color: rgba(11, 3, 45, 0.5) !important;
+}
+
+#credit {
+  color: #0B032D !important;
+  font-size: .7em;
 }

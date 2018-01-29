@@ -51,7 +51,6 @@
         <div>
           <a class="btn btn-secondary" ng-click="ctrl.showRegisterForm = true">Sign Up</a>
           <a class="btn btn-secondary" ng-click="ctrl.showLogInForm = true">Log In</a>
-          <a class="btn btn-secondary" href="#">Tell Me More</a>
         </div>
       </div>
 
@@ -59,8 +58,8 @@
 
       <div ng-if="ctrl.loggedIn === true">
         <p>Hi {{ ctrl.user.username }} !</p>
-        <a class="btn btn-outline-secondary" ng-click="ctrl.showAddProductForm = true; ctrl.getAllProducts()">Add a product</a>
-        <a class="btn btn-outline-secondary" ng-click="ctrl.getLogs()">Your logs</a>
+        <a class="btn btn-secondary" ng-click="ctrl.showAddProductForm = true; ctrl.getAllProducts()">Add a product</a>
+        <a class="btn btn-secondary" ng-click="ctrl.getLogs()">Your logs</a>
       </div>
 
     </div>
@@ -82,14 +81,17 @@
     <!-- Add to a your current log -->
     <div ng-include="'partials/add-entries.html'"></div>
 
+    <!-- Footer -->
+    <nav class="navbar navbar-light" style="background-color: #cb8589">
+      <div class="container">
+        <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
+        <a id="credit" class="text-center" href="https://unsplash.com/@noahbuscher?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Photo by Noah Buscher</a>
+      </div>
+
+    </nav>
+
   </div>
 
-  <!-- Footer -->
-  <nav class="navbar navbar-light" style="background-color: #cb8589">
-    <div class="container">
-      <a class="navbar-brand text-center" href="https://github.com/liziscurious">Made by Liz Glanz</a>
-    </div>
-  </nav>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
