@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="col">
-    <div id="all-prods" ng-repeat="product in ctrl.allProducts">
+    <div id="all-prods" ng-repeat='product in ctrl.allProducts | orderBy:"brand" | filter: searchBox'>
       <p>
         {{ product.brand }} {{ product.name }}
         <i ng-click="ctrl.showEditProductForm = true; ctrl.prodToEdit = product" class="fa fa-pencil-square-o" aria-hidden="true"></i>
