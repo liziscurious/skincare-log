@@ -35,12 +35,13 @@
   color: BlanchedAlmond;
 }
 
-#welcome {
+#welcome, #greeting {
   border-radius: 8px;
   padding: 8px;
+  background-color: rgba(11, 3, 45, 0.5) !important;
 }
 
-.btn-secondary, #welcome {
+.btn-secondary {
   background-color: rgba(11, 3, 45, 0.5) !important;
 }
 

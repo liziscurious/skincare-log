@@ -32,9 +32,9 @@
           <li class="nav-item" ng-if="ctrl.loggedIn === true">
             <a class="nav-link" ng-click="ctrl.getLogs()">Your logs</a>
           </li>
-          <li class="nav-item" ng-if="ctrl.loggedIn === true">
+          <!-- <li class="nav-item" ng-if="ctrl.loggedIn === true">
             <a class="nav-link" ng-click="ctrl.addLog = true">Start a new entry</a>
-          </li>
+          </li> -->
           <li class="nav-item" ng-if="ctrl.loggedIn === true">
             <a class="nav-link" ng-click="ctrl.logout()">Log Out</a>
           </li>
@@ -57,9 +57,10 @@
       <div ng-include="'partials/auth-login.html'"></div>
 
       <div ng-if="ctrl.loggedIn === true">
-        <p>Hi {{ ctrl.user.username }} !</p>
+        <p id="greeting">Hi {{ ctrl.user.username }} !</p>
         <a class="btn btn-secondary" ng-click="ctrl.showAddProductForm = true; ctrl.getAllProducts()">Add a product</a>
         <a class="btn btn-secondary" ng-click="ctrl.getLogs()">Your logs</a>
+        <a class="btn btn-secondary" ng-click="ctrl.addLog = true">Start a new entry</a>
       </div>
 
     </div>
